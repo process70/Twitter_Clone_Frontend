@@ -7,19 +7,19 @@ export default defineConfig({
   server: {
     proxy: {
 			"/auth": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "http://localhost:5000",
 				changeOrigin: true,
 			},
 			"/users": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "http://localhost:5000",
 				changeOrigin: true,
 			},
 			"/posts": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "http://localhost:5000",
 				changeOrigin: true,
 			},
 			"/notifications": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "http://localhost:5000",
 				changeOrigin: true,
 			},
 	},
