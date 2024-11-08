@@ -38,22 +38,29 @@ const SignUpPage = () => {
 			  console.log(data);
 			  toast.success("Account created successfully");
 			}
- 			else toast.error(data.error);
+ 			else {
+				console.log("error occured, redirecting to onError function")
+				throw new Error(data.message)
+			}
 			
 			return data
   
-		  } catch (error) {
+		  } catch (err) {
 			  throw new Error(error.message)
 		  }
 		},
+		onError: (error) => { 
+			console.log(error.message)
+			toast.error(error.message)
+		},
 		/* when no error is thrown in the mutationFn, 
 		The onSuccess callback will only be called when the mutation is successful */
-		onSuccess: () => {},
+		onSuccess: () => {}
 		/* throw new Error(): we're now properly throwing an error when the response is not ok. 
 		This ensures that the onError callback will be triggered.
 		React Query will automatically catch any errors thrown in this function and pass them to the onError callback.
 		so try-catch block could be removed; */
-		onError: (error) => { toast.error(error.message)}
+		
 	});
 
 	const handleSubmit = (e) => {

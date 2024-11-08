@@ -48,6 +48,7 @@ const LoginPage = () => {
 		  }
 		},
 		onError: (error) => {
+			console.log(error.message)
 			toast.error(error.message || "An error occurred during login. Please try again.");
 			updatePersist(false);
 		},
