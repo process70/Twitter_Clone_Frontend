@@ -119,7 +119,8 @@ const ProfilePage = () => {
 		e.preventDefault();
 		user.coverImg = coverImgFile
 		user.profileImg = profileImgFile
-				
+		console.log(currentUser)
+		user.newPassword = ''
 		editUser(user)
 		if(editSuccess) {
 			setCoverImg('')

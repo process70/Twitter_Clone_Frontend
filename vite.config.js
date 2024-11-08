@@ -7,20 +7,16 @@ export default defineConfig({
   server: {
     proxy: {
 			"/auth": {
-				target: "https://twitter_clone_backend.onrender.com",
-				changeOrigin: true,
+				target: "https://twitter-clone-backend-y6u4.onrender.com",
 			},
 			"/users": {
-				target: "https://twitter_clone_backend.onrender.com",
-				changeOrigin: true,
+				target: "https://twitter-clone-backend-y6u4.onrender.com",
 			},
 			"/posts": {
-				target: "https://twitter_clone_backend.onrender.com",
-				changeOrigin: true,
+				target: "https://twitter-clone-backend-y6u4.onrender.com",
 			},
 			"/notifications": {
-				target: "https://twitter_clone_backend.onrender.com",
-				changeOrigin: true,
+				target: "https://twitter-clone-backend-y6u4.onrender.com",
 			},
 	},
   }

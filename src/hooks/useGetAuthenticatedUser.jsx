@@ -33,7 +33,6 @@ const useGetAuthenticatedUser = () => {
     const {mutate: editUser, data: editedUser, isSuccess: editSuccess} = useMutation({
         mutationFn: async(user) => {
             try {
-                console.log({user})
                 const formData = new FormData()
                 formData.append('username' , user.username)
                 formData.append('fullName' , user.fullName)
@@ -43,7 +42,7 @@ const useGetAuthenticatedUser = () => {
                 formData.append('link' , user.link)
                 formData.append('profileImg' , user.profileImg)
                 formData.append('coverImg' , user.coverImg)
-                console.log({formData})
+                console.log(formData)
                 const res = await fetch(`/users/update`, {
                     method: 'PATCH',
                     body: formData
@@ -69,8 +68,8 @@ const useGetAuthenticatedUser = () => {
         onSuccess: (data) => {
             console.log(data)
             toast.success('profile updated')
-            if(data.loginAgain) logout()
-            else queryClient.invalidateQueries('userProfile')
+            // if(data.loginAgain) logout()
+            queryClient.invalidateQueries('userProfile')
         }
     })
 
