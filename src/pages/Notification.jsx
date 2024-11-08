@@ -1,5 +1,4 @@
 import React from 'react'
-// import { notifications } from '../assets/dummy';
 import { Link } from "react-router-dom";
 
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -9,7 +8,6 @@ import { FaUser } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast, { ErrorIcon } from 'react-hot-toast';
-import { notificationTypes } from '../../../Backend/notificationsTypes';
 
 const Notification = () => {
 
