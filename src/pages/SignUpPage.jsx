@@ -43,7 +43,7 @@ const SignUpPage = () => {
 			return data
   
 		  } catch (error) {
-			  console.log("server error: "+error.message)
+			  throw new Error(error.message)
 		  }
 		},
 		/* when no error is thrown in the mutationFn, 
@@ -53,7 +53,7 @@ const SignUpPage = () => {
 		This ensures that the onError callback will be triggered.
 		React Query will automatically catch any errors thrown in this function and pass them to the onError callback.
 		so try-catch block could be removed; */
-		onError: () => {}
+		onError: (error) => { toast.error(error.message)}
 	});
 
 	const handleSubmit = (e) => {
