@@ -7,16 +7,16 @@ export default defineConfig({
   server: {
     proxy: {
 			"/auth": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "https://twitter-clone-api.netlify.app",
 			},
 			"/users": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "https://twitter-clone-api.netlify.app",
 			},
 			"/posts": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "https://twitter-clone-api.netlify.app",
 			},
 			"/notifications": {
-				target: "https://twitter-clone-backend-y6u4.onrender.com",
+				target: "https://twitter-clone-api.netlify.app",
 			},
 	},
   }
