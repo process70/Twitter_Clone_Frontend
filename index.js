@@ -4,10 +4,11 @@ import { dbConnect } from "./db/dbConnection.js";
 import cookieParser from "cookie-parser";
 import upload from "express-fileupload";
 import path from 'path'
+import { fileURLToPath } from "url";
 
 import {v2 as cloudinary} from "cloudinary"
 
-import cors from"cors";
+import cors from "cors";
 
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
@@ -17,16 +18,12 @@ import notificationRouter from "./routes/notificationRoutes.js";
 dotenv.config()
 
 const app = express()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename);
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://twitter-clone-frontend-phi.vercel.app",
-    "https://twitter-clone-frontend-6nts.onrender.com"
-  ],
+  origin: process.env.FRONTEND_URL,
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 cloudinary.config({
@@ -51,14 +48,18 @@ app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/posts", postRouter)
 app.use("/notifications", notificationRouter)
-app.use('/', (req, res) => {
-  res.sendFile(path.resolve('index.html'));
-})
-// Add a catch-all route for debugging
+
+// Serve static files from the React/Vite app
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '/frontend/dist/index.html'))});
+
+/* // Add a catch-all route for debugging
 app.use((req, res) => {
     console.log(`Received request for ${req.method} ${req.url}`);
     res.status(404).json({ message: "Route not found" });
-});
+}); */
 /* app.get("/file", (req, res) => {
     res.send("sdfklhuqdhfqdhfod")
 })
